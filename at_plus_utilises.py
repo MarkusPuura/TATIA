@@ -31,7 +31,7 @@ def preprocess_text(text, exclude_words=None):
 
     for word in words:
         # Check if the word starts with "@" or "#"
-        if re.match(r'^[@#]', word):
+        if re.match(r'^[#]', word):
             skip_next_word = True
         elif skip_next_word:
             # Skip the next word if the previous word started with "@" or "#"
@@ -68,13 +68,13 @@ feature_names = np.array(vectorizer.get_feature_names_out())
 # Obtenir les indices des 5 premiers mots les plus fréquemment utilisés par les démocrates
 democrat_indices = np.argsort(classifier.coef_[0])[-5:][::-1]
 democrat_words = feature_names[democrat_indices]
-print(f"Top 5 words used by Republicans: {democrat_words}")
+print(f"Top 5 at used by Republicans: {democrat_words}")
 
 # Obtenir les indices des 5 premiers mots les plus fréquemment utilisés par les républicains
 republican_indices = np.argsort(classifier.coef_[0])[:5]
 republican_words = feature_names[republican_indices]
-print(f"Top 5 words used by Democrats: {republican_words}")
+print(f"Top 5 at used by Democrats: {republican_words}")
 
 # Afficher les coefficients associés à ces mots
-print("Coefficients for Republican words:", classifier.coef_[0, democrat_indices])
-print("Coefficients for Democrats words:", classifier.coef_[0, republican_indices])
+print("Coefficients for Republican at:", classifier.coef_[0, democrat_indices])
+print("Coefficients for Democrats at:", classifier.coef_[0, republican_indices])
